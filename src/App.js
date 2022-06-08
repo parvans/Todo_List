@@ -1,11 +1,7 @@
 import "./styles.css";
 import { useState } from "react";
 export default function App() {
-  const [todos, setTodos] = useState([
-    { text: "Orange", isCompleted: false },
-    { text: "Apple", isCompleted: false },
-    { text: "Banana", isCompleted: false }
-  ]);
+  const [todos, setTodos] = useState([]);
   const [value, setValues] = useState("");
   function addItem(e) {
     e.preventDefault();
@@ -22,11 +18,7 @@ export default function App() {
   }
   return (
     <>
-      {todos.map((item, i) => (
-        <div className="todo" key={i} id={i} onClick={removeItem}>
-          {item.text}
-        </div>
-      ))}
+      <h4>Todo:{todos.length}</h4>
       <form onSubmit={addItem}>
         <input
           type="text"
@@ -36,6 +28,14 @@ export default function App() {
           onChange={(e) => setValues(e.target.value)}
         />
       </form>
+      {todos.map((item, i) => (
+        <div className="todo" key={i} id={i}>
+          {item.text}
+          <button key={i} id={i} onClick={removeItem}>
+            X
+          </button>
+        </div>
+      ))}
     </>
   );
 }
